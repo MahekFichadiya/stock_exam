@@ -1,20 +1,18 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:stock_management_exam/core/locator/locator.dart';
 import 'package:stock_management_exam/data/model/response_model/stock_response_model/stock_response_model.dart';
 import 'package:stock_management_exam/router/app_router.gr.dart';
-import 'package:stock_management_exam/ui/auth/ui/login_screen.dart';
+import 'package:stock_management_exam/ui/auth/store/auth_store.dart';
 import 'package:stock_management_exam/ui/home/store/stock_store.dart';
 import 'package:stock_management_exam/ui/home/widget/duration_tab.dart';
+import 'package:stock_management_exam/ui/home/widget/show_signal.dart';
 import 'package:stock_management_exam/values/app_colors.dart';
 import 'package:stock_management_exam/values/app_icon.dart';
-import 'package:stock_management_exam/values/app_text_style.dart';
-import 'package:stock_management_exam/values/dimention.dart';
 import 'package:stock_management_exam/values/screen_data.dart';
 import 'package:stock_management_exam/widget/custom_app_bar.dart';
 import 'package:stock_management_exam/widget/show_message.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:stock_management_exam/widget/show_success.dart';
 
 import '../../../generated/l10n.dart';
 
@@ -27,13 +25,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var stockStore = locator<StockStore>();
-
-  ValueNotifier<String> selectedDuration = ValueNotifier('Short Term');
+  late ValueNotifier<String> selectedDuration = ValueNotifier(stockStore.stockResponseModel.data!.durationTabs![0]);
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getSignalData();
   }
@@ -41,9 +36,28 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> getSignalData() async {
     try {
       await stockStore.getSignals();
+      if (!mounted) return;
+      ShowMessage(context: context, message: stockStore.successMessage).show();
     } catch (e) {
       if (!mounted) return;
       ShowMessage(context: context, message: e.toString()).show();
+    }
+  }
+
+  Future<void> logout(int id) async {
+    if (await authStore.logout(id)) {
+      if (!mounted) return;
+      ShowSuccess(
+        context: context,
+        isError: false,
+        successMessage: authStore.successMessage,
+        onSuccessCallBack: () {
+          context.router.replaceAll([LoginRoute()]);
+        },
+      ).show();
+    } else {
+      if (!mounted) return;
+      ShowSuccess(context: context, isError: true, errorMessage: authStore.errorMessage).show();
     }
   }
 
@@ -51,7 +65,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var screenData = ScreenData(context: context);
     var screenWidth = screenData.screenWidth;
-    var screenHeight = screenData.screeHeight;
     return SafeArea(
       top: false,
       child: Scaffold(
@@ -68,7 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             IconButton(
               onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                print("-------user id----------");
+                print(authStore.userResponseModel!.data!.user!.id!);
+                logout(authStore.userResponseModel!.data!.user!.id!);
               },
               style: IconButton.styleFrom(foregroundColor: AppColors.whiteColor),
               icon: Icon(AppIcon.logoutIcon),
@@ -79,72 +94,52 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.all(screenWidth * 0.05),
           child: Observer(
             builder: (context) {
-              var durationTab = stockStore.stockResponseModel.data!.durationTabs;
-              return Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: AlwaysScrollableScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: durationTab?.length,
-                      itemBuilder: (context, index) {
-                        return ValueListenableBuilder(
-                          valueListenable: selectedDuration,
-                          builder: (context, value, child) {
-                            return InkWell(
-                              onTap: () {
-                                selectedDuration.value = durationTab[index];
-                              },
-                              overlayColor: WidgetStatePropertyAll(AppColors.transparentColor),
-                              child: DurationTab(durationTab: durationTab![index], selectedDurationTab: value),
-                            );
-                          },
-                        );
-                      },
+              if (stockStore.isLoading) {
+                return Center(child: CircularProgressIndicator(color: AppColors.greenColor));
+              } else {
+                var durationTab = stockStore.stockResponseModel.data!.durationTabs;
+                if (!durationTab!.contains(S.of(context).all)) {
+                  durationTab.insert(0, S.of(context).all);
+                }
+                return Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: AlwaysScrollableScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: durationTab.length,
+                        itemBuilder: (context, index) {
+                          return ValueListenableBuilder(
+                            valueListenable: selectedDuration,
+                            builder: (context, value, child) {
+                              return InkWell(
+                                onTap: () {
+                                  selectedDuration.value = durationTab[index];
+                                },
+                                overlayColor: WidgetStatePropertyAll(AppColors.transparentColor),
+                                child: DurationTab(durationTab: durationTab[index], selectedDurationTab: value),
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 9,
-                    child: ValueListenableBuilder(
-                      valueListenable: selectedDuration,
-                      builder: (context, value, child) {
-                        List<Signals> signalList = stockStore.stockResponseModel.data!.signals!
-                            .where((element) => element.duration == value)
-                            .toList();
-                        return ListView.builder(
-                          itemCount: signalList.length,
-                          itemBuilder: (context, index) {
-                            return Text(signalList[index].companyName!, style: semiBoldTextStyle.copyWith(color: AppColors.whiteColor));
-                            // return Container(
-                            //   margin: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
-                            //   decoration: BoxDecoration(
-                            //     borderRadius: BorderRadius.circular(kBorderRadius * 3),
-                            //     gradient: LinearGradient(
-                            //       colors: [AppColors.whiteColor, AppColors.whiteColor.withAlpha(100)],
-                            //       begin: Alignment.topCenter,
-                            //       end: Alignment.bottomCenter,
-                            //     ),
-                            //   ),
-                            //   child: Container(
-                            //     decoration: BoxDecoration(
-                            //       borderRadius: BorderRadius.circular(kBorderRadius * 3),
-                            //       gradient: LinearGradient(
-                            //         colors: [AppColors.blackGradientColor, AppColors.blackColor],
-                            //         begin: Alignment.bottomLeft,
-                            //         end: Alignment.topRight,
-                            //       ),
-                            //     ),
-                            //     child: Column(children: [Row(children: [])]),
-                            //   ),
-                            // );
-                          },
-                        );
-                      },
+                    Expanded(
+                      flex: 9,
+                      child: ValueListenableBuilder(
+                        valueListenable: selectedDuration,
+                        builder: (context, value, child) {
+                          List<Signals> signalList = value == S.of(context).all
+                              ? stockStore.stockResponseModel.data!.signals!
+                              : stockStore.stockResponseModel.data!.signals!.where((element) => element.duration == value).toList();
+                          return ShowSignal(signalList: signalList);
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              );
+                  ],
+                );
+              }
             },
           ),
         ),

@@ -11,7 +11,7 @@ final GetIt locator = GetIt.instance;
 
 void setUpLocator() async {
   locator.registerLazySingleton(() => AppRouter());
-  await ApiModule.dioProvider();
+  await ApiModule().dioProvider();
   locator.registerLazySingleton<RepositoryImplementation>(() => RepositoryImplementation(apiServices: locator<ApiServices>()));
   locator.registerLazySingleton<AuthStore>(() => AuthStore(repository: locator<RepositoryImplementation>()));
   locator.registerLazySingleton<StockStore>(() => StockStore(repository: locator<RepositoryImplementation>()));

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../values/app_colors.dart';
 import '../../../values/app_text_style.dart';
-import '../../../values/dimention.dart';
+import '../../../values/dimension.dart';
 import '../../../values/screen_data.dart';
 
 class DurationTab extends StatelessWidget {

@@ -69,13 +69,13 @@ mixin _$AuthStore on _AuthStore, Store {
   );
 
   @override
-  UserResponseModel? get userResponseModel {
+  UserSignUpResponseModel? get userResponseModel {
     _$userResponseModelAtom.reportRead();
     return super.userResponseModel;
   }
 
   @override
-  set userResponseModel(UserResponseModel? value) {
+  set userResponseModel(UserSignUpResponseModel? value) {
     _$userResponseModelAtom.reportWrite(value, super.userResponseModel, () {
       super.userResponseModel = value;
     });
@@ -87,7 +87,7 @@ mixin _$AuthStore on _AuthStore, Store {
   );
 
   @override
-  Future<bool> signUp(UserResponseModel model) {
+  Future<bool> signUp(UserSignUpRequestModel model) {
     return _$signUpAsyncAction.run(() => super.signUp(model));
   }
 
@@ -99,6 +99,16 @@ mixin _$AuthStore on _AuthStore, Store {
   @override
   Future<bool> login(UserRequestModel model) {
     return _$loginAsyncAction.run(() => super.login(model));
+  }
+
+  late final _$logoutAsyncAction = AsyncAction(
+    '_AuthStore.logout',
+    context: context,
+  );
+
+  @override
+  Future<bool> logout(int id) {
+    return _$logoutAsyncAction.run(() => super.logout(id));
   }
 
   @override

@@ -81,6 +81,60 @@ mixin _$StockStore on _StockStore, Store {
     });
   }
 
+  late final _$particularSignalAtom = Atom(
+    name: '_StockStore.particularSignal',
+    context: context,
+  );
+
+  @override
+  ParticularSignal get particularSignal {
+    _$particularSignalAtom.reportRead();
+    return super.particularSignal;
+  }
+
+  @override
+  set particularSignal(ParticularSignal value) {
+    _$particularSignalAtom.reportWrite(value, super.particularSignal, () {
+      super.particularSignal = value;
+    });
+  }
+
+  late final _$selectedProductTypeAtom = Atom(
+    name: '_StockStore.selectedProductType',
+    context: context,
+  );
+
+  @override
+  ObservableList<String> get selectedProductType {
+    _$selectedProductTypeAtom.reportRead();
+    return super.selectedProductType;
+  }
+
+  @override
+  set selectedProductType(ObservableList<String> value) {
+    _$selectedProductTypeAtom.reportWrite(value, super.selectedProductType, () {
+      super.selectedProductType = value;
+    });
+  }
+
+  late final _$selectedOrderTypeAtom = Atom(
+    name: '_StockStore.selectedOrderType',
+    context: context,
+  );
+
+  @override
+  ObservableList<String> get selectedOrderType {
+    _$selectedOrderTypeAtom.reportRead();
+    return super.selectedOrderType;
+  }
+
+  @override
+  set selectedOrderType(ObservableList<String> value) {
+    _$selectedOrderTypeAtom.reportWrite(value, super.selectedOrderType, () {
+      super.selectedOrderType = value;
+    });
+  }
+
   late final _$getSignalsAsyncAction = AsyncAction(
     '_StockStore.getSignals',
     context: context,
@@ -91,13 +145,55 @@ mixin _$StockStore on _StockStore, Store {
     return _$getSignalsAsyncAction.run(() => super.getSignals());
   }
 
+  late final _$getStockDetailAsyncAction = AsyncAction(
+    '_StockStore.getStockDetail',
+    context: context,
+  );
+
+  @override
+  Future<void> getStockDetail(int id) {
+    return _$getStockDetailAsyncAction.run(() => super.getStockDetail(id));
+  }
+
+  late final _$_StockStoreActionController = ActionController(
+    name: '_StockStore',
+    context: context,
+  );
+
+  @override
+  void selectProduct(String product) {
+    final _$actionInfo = _$_StockStoreActionController.startAction(
+      name: '_StockStore.selectProduct',
+    );
+    try {
+      return super.selectProduct(product);
+    } finally {
+      _$_StockStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void selectOrder(String order) {
+    final _$actionInfo = _$_StockStoreActionController.startAction(
+      name: '_StockStore.selectOrder',
+    );
+    try {
+      return super.selectOrder(order);
+    } finally {
+      _$_StockStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 isLoading: ${isLoading},
 successMessage: ${successMessage},
 errorMessage: ${errorMessage},
-stockResponseModel: ${stockResponseModel}
+stockResponseModel: ${stockResponseModel},
+particularSignal: ${particularSignal},
+selectedProductType: ${selectedProductType},
+selectedOrderType: ${selectedOrderType}
     ''';
   }
 }

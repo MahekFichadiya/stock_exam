@@ -418,6 +418,356 @@ class S {
       args: [],
     );
   }
+
+  /// `NSE`
+  String get nse {
+    return Intl.message('NSE', name: 'nse', desc: '', args: []);
+  }
+
+  /// `LTP`
+  String get ltp {
+    return Intl.message('LTP', name: 'ltp', desc: '', args: []);
+  }
+
+  /// `Gain so far`
+  String get gainSoFar {
+    return Intl.message('Gain so far', name: 'gainSoFar', desc: '', args: []);
+  }
+
+  /// `%`
+  String get persentage {
+    return Intl.message('%', name: 'persentage', desc: '', args: []);
+  }
+
+  /// `Potential left`
+  String get potentialLeft {
+    return Intl.message(
+      'Potential left',
+      name: 'potentialLeft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trade Now`
+  String get tradeNow {
+    return Intl.message('Trade Now', name: 'tradeNow', desc: '', args: []);
+  }
+
+  /// `Intraday`
+  String get intraday {
+    return Intl.message('Intraday', name: 'intraday', desc: '', args: []);
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message('All', name: 'all', desc: '', args: []);
+  }
+
+  /// `Type:`
+  String get type {
+    return Intl.message('Type:', name: 'type', desc: '', args: []);
+  }
+
+  /// `₹`
+  String get rupee {
+    return Intl.message('₹', name: 'rupee', desc: '', args: []);
+  }
+
+  /// `Energy Minerals`
+  String get energyMinerals {
+    return Intl.message(
+      'Energy Minerals',
+      name: 'energyMinerals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oil Refining/Marketing`
+  String get oilRefiningmarketing {
+    return Intl.message(
+      'Oil Refining/Marketing',
+      name: 'oilRefiningmarketing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy`
+  String get buy {
+    return Intl.message('Buy', name: 'buy', desc: '', args: []);
+  }
+
+  /// `Sell`
+  String get sell {
+    return Intl.message('Sell', name: 'sell', desc: '', args: []);
+  }
+
+  /// `Expiry:`
+  String get expiry {
+    return Intl.message('Expiry:', name: 'expiry', desc: '', args: []);
+  }
+
+  /// `Jun 12`
+  String get jun12 {
+    return Intl.message('Jun 12', name: 'jun12', desc: '', args: []);
+  }
+
+  /// `Product Type`
+  String get productType {
+    return Intl.message(
+      'Product Type',
+      name: 'productType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Type`
+  String get orderType {
+    return Intl.message('Order Type', name: 'orderType', desc: '', args: []);
+  }
+
+  /// `Order Preference`
+  String get orderPreference {
+    return Intl.message(
+      'Order Preference',
+      name: 'orderPreference',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AI Assisted`
+  String get aiAssisted {
+    return Intl.message('AI Assisted', name: 'aiAssisted', desc: '', args: []);
+  }
+
+  /// `Entry Range`
+  String get entryRange {
+    return Intl.message('Entry Range', name: 'entryRange', desc: '', args: []);
+  }
+
+  /// `Stop Loss`
+  String get stopLoss {
+    return Intl.message('Stop Loss', name: 'stopLoss', desc: '', args: []);
+  }
+
+  /// `Target`
+  String get target {
+    return Intl.message('Target', name: 'target', desc: '', args: []);
+  }
+
+  /// `SL Trigger:`
+  String get slTrigger {
+    return Intl.message('SL Trigger:', name: 'slTrigger', desc: '', args: []);
+  }
+
+  /// `51.20`
+  String get slTriggerValue {
+    return Intl.message('51.20', name: 'slTriggerValue', desc: '', args: []);
+  }
+
+  /// `SL Market`
+  String get slMarket {
+    return Intl.message('SL Market', name: 'slMarket', desc: '', args: []);
+  }
+
+  /// `SL Limit:`
+  String get slLimit {
+    return Intl.message('SL Limit:', name: 'slLimit', desc: '', args: []);
+  }
+
+  /// `60.15`
+  String get slLimitValue {
+    return Intl.message('60.15', name: 'slLimitValue', desc: '', args: []);
+  }
+
+  /// `Set alert when your order hits target`
+  String get setAlertWhenYourOrderHitsTarget {
+    return Intl.message(
+      'Set alert when your order hits target',
+      name: 'setAlertWhenYourOrderHitsTarget',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Live:`
+  String get live {
+    return Intl.message('Live:', name: 'live', desc: '', args: []);
+  }
+
+  /// `Due to exchange regulations, we will only be placing your STOP LOSS orders for Delivery & MTF trades. We have placed automated alerts for your TARGET, which will alert you once the TARGET price is achieved.`
+  String get dueToExchangeRegulationsWeWillOnlyBePlacingYour {
+    return Intl.message(
+      'Due to exchange regulations, we will only be placing your STOP LOSS orders for Delivery & MTF trades. We have placed automated alerts for your TARGET, which will alert you once the TARGET price is achieved.',
+      name: 'dueToExchangeRegulationsWeWillOnlyBePlacingYour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you want to place a Stop Loss or Target Order, You have to place it manually. These are just alerts`
+  String get ifYouWantToPlaceAStopLossOrTarget {
+    return Intl.message(
+      'If you want to place a Stop Loss or Target Order, You have to place it manually. These are just alerts',
+      name: 'ifYouWantToPlaceAStopLossOrTarget',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Trading Capital`
+  String get yourTradingCapital {
+    return Intl.message(
+      'Your Trading Capital',
+      name: 'yourTradingCapital',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Per Trade Risk`
+  String get perTradeRisk {
+    return Intl.message(
+      'Per Trade Risk',
+      name: 'perTradeRisk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trade Risk`
+  String get tradeRisk {
+    return Intl.message('Trade Risk', name: 'tradeRisk', desc: '', args: []);
+  }
+
+  /// `Quantity`
+  String get quantity {
+    return Intl.message('Quantity', name: 'quantity', desc: '', args: []);
+  }
+
+  /// `Shares`
+  String get shares {
+    return Intl.message('Shares', name: 'shares', desc: '', args: []);
+  }
+
+  /// `Potential Profit`
+  String get potentialProfit {
+    return Intl.message(
+      'Potential Profit',
+      name: 'potentialProfit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Margin Required:`
+  String get marginRequired {
+    return Intl.message(
+      'Margin Required:',
+      name: 'marginRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Margin Available:`
+  String get marginAvailable {
+    return Intl.message(
+      'Margin Available:',
+      name: 'marginAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fund limit Insufficient by: 1253.22`
+  String get fundLimitInsufficientBy125322 {
+    return Intl.message(
+      'Fund limit Insufficient by: 1253.22',
+      name: 'fundLimitInsufficientBy125322',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instant Sell`
+  String get instantSell {
+    return Intl.message(
+      'Instant Sell',
+      name: 'instantSell',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instant Buy`
+  String get instantBuy {
+    return Intl.message('Instant Buy', name: 'instantBuy', desc: '', args: []);
+  }
+
+  /// `Placing Order on`
+  String get placingOrderOn {
+    return Intl.message(
+      'Placing Order on',
+      name: 'placingOrderOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Free`
+  String get free {
+    return Intl.message('Free', name: 'free', desc: '', args: []);
+  }
+
+  /// `Placing Order`
+  String get placingOrder {
+    return Intl.message(
+      'Placing Order',
+      name: 'placingOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `on`
+  String get on {
+    return Intl.message('on', name: 'on', desc: '', args: []);
+  }
+
+  /// `Request Can't handle now.. try after some time..`
+  String get requestCantHandleNowTryAfterSomeTime {
+    return Intl.message(
+      'Request Can\'t handle now.. try after some time..',
+      name: 'requestCantHandleNowTryAfterSomeTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email should not start with the digit`
+  String get emailShouldNotStartWithTheDigit {
+    return Intl.message(
+      'Email should not start with the digit',
+      name: 'emailShouldNotStartWithTheDigit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email should not start with symbol`
+  String get emailShouldNotStartWithSymbol {
+    return Intl.message(
+      'Email should not start with symbol',
+      name: 'emailShouldNotStartWithSymbol',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -7,3 +7,5 @@ final TextStyle semiBoldTextStyle = TextStyle(fontWeight: FontWeight.w600, fontS
 final TextStyle regularTextStyle = TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: AppColors.blackColor);
 
 final TextStyle mediumTextStyle = TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.blackColor);
+
+final TextStyle lightTextStyle = TextStyle(fontWeight: FontWeight.w300, fontSize: 16, color: AppColors.blackColor);

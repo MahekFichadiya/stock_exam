@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stock_management_exam/values/app_colors.dart';
 import 'package:stock_management_exam/values/app_text_style.dart';
-import 'package:stock_management_exam/values/dimention.dart';
+import 'package:stock_management_exam/values/dimension.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;

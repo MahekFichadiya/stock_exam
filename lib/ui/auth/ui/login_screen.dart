@@ -12,6 +12,7 @@ import 'package:stock_management_exam/ui/auth/widget/header_ui.dart';
 import 'package:stock_management_exam/values/app_colors.dart';
 import 'package:stock_management_exam/values/app_icon.dart';
 import 'package:stock_management_exam/values/app_text_style.dart';
+import 'package:stock_management_exam/values/form_validation/no_consecutive_space_formatter.dart';
 import 'package:stock_management_exam/values/screen_data.dart';
 import 'package:stock_management_exam/widget/custom_app_bar.dart';
 import 'package:stock_management_exam/widget/custom_submission_button.dart';
@@ -67,19 +68,14 @@ class _LoginScreenState extends State<LoginScreen> {
     showPassword.dispose();
   }
 
-  var authStore = locator<AuthStore>();
-
   Future<void> login(UserRequestModel model) async {
     try {
       if (await authStore.login(model)) {
         if (!mounted) return;
-        ShowSuccess(
-          context: context,
-          isError: false,
-          onSuccessCallBack: () {
-            context.router.push(HomeRoute());
-          },
-        ).show();
+        ShowMessage(context: context, message: authStore.successMessage).show();
+        context.router.push(HomeRoute());
+        _emailController.clear();
+        _passwordController.clear();
       } else {
         if (!mounted) return;
         ShowSuccess(context: context, isError: true, errorMessage: authStore.errorMessage).show();
@@ -97,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return SafeArea(
       top: false,
       child: Scaffold(
-        appBar: CustomAppBar(showLeading: true),
+        appBar: CustomAppBar(leading: Icon(AppIcon.backArrowIcon)),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,6 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             maxLine: 2,
                             textInputType: TextInputType.emailAddress,
                             validator: FormValidation.emailValidator,
+                            inputFormatters: [NoConsecutiveSpaceFormatter()],
                           ),
                           Text(S.of(context).password, style: semiBoldTextStyle.copyWith(color: AppColors.newGreyColor, fontSize: 14)),
                           ValueListenableBuilder(
@@ -148,6 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 maxLine: 1,
                                 textInputAction: TextInputAction.done,
                                 style: mediumTextStyle.copyWith(fontSize: 14, letterSpacing: 3),
+                                inputFormatters: [NoConsecutiveSpaceFormatter()],
                               );
                             },
                           ),

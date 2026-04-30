@@ -11,8 +11,9 @@ class ShowSuccess {
   final BuildContext context;
   final bool isError;
   final String? errorMessage;
+  final String? successMessage;
   final VoidCallback? onSuccessCallBack;
-  ShowSuccess({required this.context, this.errorMessage, required this.isError, this.onSuccessCallBack});
+  ShowSuccess({required this.context, this.errorMessage, required this.isError, this.onSuccessCallBack, this.successMessage});
 
   void show() {
     showDialog(
@@ -20,7 +21,7 @@ class ShowSuccess {
       builder: (context) => AlertDialog(
         title: Icon(isError ? AppIcon.errorIcon : AppIcon.successIcon, size: ScreenData(context: context).screeHeight * 0.06),
         content: Text(
-          isError ? errorMessage! : S.of(context).success,
+          isError ? errorMessage! : successMessage!,
           textAlign: TextAlign.center,
           style: semiBoldTextStyle.copyWith(fontSize: 22, color: AppColors.newGreyColor),
         ),

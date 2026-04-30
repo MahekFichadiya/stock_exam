@@ -19,24 +19,21 @@ class FormValidation {
       return S.current.fieldShouldntBeEmpty;
     }
 
-    // check the length
-    // if (value.length < 8) {
-    //   return S.current.lengthOfPasswordShouldBe58;
-    // }
-    // if (!RegExp(r'[A-Z]').hasMatch(value)) {
-    //   return S.current.passwordShouldContainAtLeast1Uppercase;
-    // }
-    // if (!RegExp(r'[a-z]').hasMatch(value)) {
-    //   return S.current.passwordShouldContainAtLeast1Lowercase;
-    // }
-    // if (!RegExp(r'[0-9]').hasMatch(value)) {
-    //   return S.current.passwordShouldContainAtLeast1Digit;
-    // }
-
-    //check the regexp
-    // if (!RegExp(r'[`~!@#$%^&*_-|:;,.<>/?]').hasMatch(value)) {
-    //   return S.current.passwordShouldContainAtLeast1Nonalphabet;
-    // }
+    if (!RegExp(r'[A-Z]').hasMatch(value)) {
+      return S.current.passwordShouldContainAtLeast1Uppercase;
+    }
+    if (!RegExp(r'[a-z]').hasMatch(value)) {
+      return S.current.passwordShouldContainAtLeast1Lowercase;
+    }
+    if (!RegExp(r'[0-9]').hasMatch(value)) {
+      return S.current.passwordShouldContainAtLeast1Digit;
+    }
+    if (!RegExp(r'[!@_#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+      return S.current.passwordShouldContainAtLeast1Nonalphabet;
+    }
+    if (RegExp(r'.{13,}').hasMatch(value)) {
+      return S.current.lengthOfPasswordShouldBe58;
+    }
     return null;
   };
 
@@ -50,12 +47,12 @@ class FormValidation {
     if (RegExp(r'[0-9]').hasMatch(value)) {
       return S.current.nameShouldNotContainDigits;
     }
-
-    // if (RegExp(r'[`~!@#$%^&*_-|:;,.<>/?]').hasMatch(value)) {
-    //   return S.current.nameShouldNotContainNonAlphabeticValue;
-    // }
+    if (RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+      return S.current.nameShouldNotContainNonAlphabeticValue;
+    }
     return null;
   };
+
   static String? Function(String?)? emailValidator = (String? value) {
     if (value!.isEmpty) {
       return S.current.fieldShouldntBeEmpty;
@@ -63,13 +60,13 @@ class FormValidation {
     if (!RegExp(r'[A-Za-z0-9.]+@[a-z]+\.[a-z]+').hasMatch(value)) {
       return S.current.enterValidEmailAddress;
     }
-    // if (RegExp(r'[0-9]').hasMatch(value)) {
-    //   return S.current.nameShouldNotContainDigits;
-    // }
+    if (RegExp(r'^[0-9]').hasMatch(value)) {
+      return S.current.emailShouldNotStartWithTheDigit;
+    }
 
-    // if (RegExp(r'[`~!@#$%^&*_-|:;,.<>/?]').hasMatch(value)) {
-    //   return S.current.nameShouldNotContainNonAlphabeticValue;
-    // }
+    if (RegExp(r'^[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+      return S.current.emailShouldNotStartWithSymbol;
+    }
     return null;
   };
 }

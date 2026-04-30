@@ -20,15 +20,15 @@ class _ApiServices implements ApiServices {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<UserResponseModel> signUpApi(
-    UserResponseModel userResponseModel,
+  Future<UserSignUpResponseModel> signUpApi(
+    UserSignUpRequestModel userResponseModel,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(userResponseModel.toJson());
-    final _options = _setStreamType<UserResponseModel>(
+    final _options = _setStreamType<UserSignUpResponseModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -39,9 +39,9 @@ class _ApiServices implements ApiServices {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<dynamic>(_options);
-    late UserResponseModel _value;
+    late UserSignUpResponseModel _value;
     try {
-      _value = UserResponseModel.fromJson(_result.data!);
+      _value = UserSignUpResponseModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -50,13 +50,15 @@ class _ApiServices implements ApiServices {
   }
 
   @override
-  Future<UserResponseModel> loginApi(UserRequestModel userRequestModel) async {
+  Future<UserSignUpResponseModel> loginApi(
+    UserRequestModel userRequestModel,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(userRequestModel.toJson());
-    final _options = _setStreamType<UserResponseModel>(
+    final _options = _setStreamType<UserSignUpResponseModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -67,9 +69,9 @@ class _ApiServices implements ApiServices {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<dynamic>(_options);
-    late UserResponseModel _value;
+    late UserSignUpResponseModel _value;
     try {
-      _value = UserResponseModel.fromJson(_result.data!);
+      _value = UserSignUpResponseModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -97,6 +99,61 @@ class _ApiServices implements ApiServices {
     late StockResponseModel _value;
     try {
       _value = StockResponseModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ParticularSignal> getParticularSignal(int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ParticularSignal>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/stocks/signals/${id}',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<dynamic>(_options);
+    late ParticularSignal _value;
+    try {
+      _value = ParticularSignal.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<UserLogoutResponse> logout(UserLogoutModel userLogoutModel) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(userLogoutModel.toJson());
+    final _options = _setStreamType<UserLogoutResponse>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/stocks/logout',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<dynamic>(_options);
+    late UserLogoutResponse _value;
+    try {
+      _value = UserLogoutResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

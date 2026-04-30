@@ -11,6 +11,9 @@ class DioExceptionApi {
     switch (error.type) {
       case DioExceptionType.unknown:
         errorString = S.current.unknownError;
+        if (error.error == SocketException) {
+          errorString = S.current.requestCantHandleNowTryAfterSomeTime;
+        }
         break;
       case DioExceptionType.cancel:
         errorString = S.current.requestIsCanceledFromTheServer;

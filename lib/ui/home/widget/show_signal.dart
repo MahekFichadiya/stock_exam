@@ -8,7 +8,7 @@ import '../../../generated/l10n.dart';
 import '../../../values/app_colors.dart';
 import '../../../values/app_icon.dart';
 import '../../../values/app_text_style.dart';
-import '../../../values/dimention.dart';
+import '../../../values/dimension.dart';
 import '../../../values/screen_data.dart';
 import '../../../widget/custom_submission_button.dart';
 
@@ -136,7 +136,7 @@ class ShowSignal extends StatelessWidget {
                         CustomSubmissionButton(
                           label: S.of(context).tradeNow,
                           onPressed: () {
-                            context.router.push(BuySellStockRoute());
+                            context.router.push(BuySellStockRoute(stockId: signalList[index].id!));
                           },
                           decoration: BoxDecoration(
                             gradient: LinearGradient(

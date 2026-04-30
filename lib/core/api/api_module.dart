@@ -9,7 +9,7 @@ import 'package:stock_management_exam/core/locator/locator.dart';
 import 'package:stock_management_exam/data/remote/api_services.dart';
 
 class ApiModule {
-  static Future dioProvider() async {
+  Future<void> dioProvider() async {
     var dio = await setDio();
 
     locator.registerLazySingleton<Dio>(() => dio);

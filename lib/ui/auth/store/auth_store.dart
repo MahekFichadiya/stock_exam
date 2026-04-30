@@ -2,9 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:mobx/mobx.dart';
 import 'package:stock_management_exam/core/exception/dio_exception_api.dart';
 import 'package:stock_management_exam/data/model/request_model/user_request_model/user_request_model.dart';
+import 'package:stock_management_exam/data/model/request_model/user_request_model/user_sign_up_request_model.dart';
+import 'package:stock_management_exam/data/model/response_model/user_sign_up_response_model.dart';
 import 'package:stock_management_exam/data/repository/repository.dart';
 import 'package:stock_management_exam/data/repository_implementation/repository_implementation.dart';
 
+import '../../../core/locator/locator.dart';
 import '../../../data/model/response_model/user_response_model.dart';
 
 part 'auth_store.g.dart';
@@ -25,13 +28,14 @@ abstract class _AuthStore with Store {
   String? errorMessage;
 
   @observable
-  UserResponseModel? userResponseModel;
+  UserSignUpResponseModel? userResponseModel;
 
   @action
-  Future<bool> signUp(UserResponseModel model) async {
+  Future<bool> signUp(UserSignUpRequestModel model) async {
     try {
       var result = await repository.signUp(model);
       userResponseModel = result;
+      successMessage = result.message;
       return true;
     } on DioException catch (e) {
       errorMessage = DioExceptionApi.handleError(e);
@@ -46,6 +50,21 @@ abstract class _AuthStore with Store {
     try {
       var result = await repository.loginIn(model);
       userResponseModel = result;
+      successMessage = result.message;
+      return true;
+    } on DioException catch (e) {
+      errorMessage = DioExceptionApi.handleError(e);
+    } catch (e) {
+      errorMessage = e.toString();
+    }
+    return false;
+  }
+
+  @action
+  Future<bool> logout(int id) async {
+    try {
+      var result = await repository.logout(id);
+      successMessage = result.message;
       return true;
     } on DioException catch (e) {
       errorMessage = DioExceptionApi.handleError(e);
@@ -55,3 +74,5 @@ abstract class _AuthStore with Store {
     return false;
   }
 }
+
+var authStore = locator<AuthStore>();

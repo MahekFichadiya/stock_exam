@@ -1,11 +1,11 @@
 /// code : "200"
-/// message : "Logged in successfully"
-/// data : {"token":"ht5yxc0tms4c88rxeu1265i0sb56qd9nl9ewtza11mxz3sb8wwaguet3spssbvn7","user":{"id":13,"full_name":"Mahe Fichadiya","email":"mital.fichadiya@flincbyte.com","phone":"7284048986","profile_image":null,"portfolio_value":0,"available_balance":10000}}
+/// message : "Registered successfully"
+/// data : {"token":"t1zhg0kx0hth74zs7kufbatjmxhtnnqgwy56vusnfku09h9ngpw436bn4jyuum8j","user":{"id":15,"full_name":"Hinal","email":"hinal@gmail.com","phone":"+978756234576","profile_image":null,"portfolio_value":0,"available_balance":10000}}
 
-class UserResponseModel {
-  UserResponseModel({this.code, this.message, this.data});
+class UserSignUpResponseModel {
+  UserSignUpResponseModel({this.code, this.message, this.data});
 
-  UserResponseModel.fromJson(dynamic json) {
+  UserSignUpResponseModel.fromJson(dynamic json) {
     code = json['code'];
     message = json['message'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -13,8 +13,8 @@ class UserResponseModel {
   String? code;
   String? message;
   Data? data;
-  UserResponseModel copyWith({String? code, String? message, Data? data}) =>
-      UserResponseModel(code: code ?? this.code, message: message ?? this.message, data: data ?? this.data);
+  UserSignUpResponseModel copyWith({String? code, String? message, Data? data}) =>
+      UserSignUpResponseModel(code: code ?? this.code, message: message ?? this.message, data: data ?? this.data);
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['code'] = code;
@@ -26,8 +26,8 @@ class UserResponseModel {
   }
 }
 
-/// token : "ht5yxc0tms4c88rxeu1265i0sb56qd9nl9ewtza11mxz3sb8wwaguet3spssbvn7"
-/// user : {"id":13,"full_name":"Mahe Fichadiya","email":"mital.fichadiya@flincbyte.com","phone":"7284048986","profile_image":null,"portfolio_value":0,"available_balance":10000}
+/// token : "t1zhg0kx0hth74zs7kufbatjmxhtnnqgwy56vusnfku09h9ngpw436bn4jyuum8j"
+/// user : {"id":15,"full_name":"Hinal","email":"hinal@gmail.com","phone":"+978756234576","profile_image":null,"portfolio_value":0,"available_balance":10000}
 
 class Data {
   Data({this.token, this.user});
@@ -49,10 +49,10 @@ class Data {
   }
 }
 
-/// id : 13
-/// full_name : "Mahe Fichadiya"
-/// email : "mital.fichadiya@flincbyte.com"
-/// phone : "7284048986"
+/// id : 15
+/// full_name : "Hinal"
+/// email : "hinal@gmail.com"
+/// phone : "+978756234576"
 /// profile_image : null
 /// portfolio_value : 0
 /// available_balance : 10000

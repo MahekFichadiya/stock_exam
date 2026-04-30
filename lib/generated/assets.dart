@@ -12,9 +12,17 @@ class Assets {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  final AssetGenImage appIconImage = const AssetGenImage('assets/images/app_icon_image.png');
+  final AssetGenImage chartImage = const AssetGenImage('assets/images/chart_image.png');
+  final AssetGenImage companyLogoImage = const AssetGenImage('assets/images/company_logo_image.png');
   final AssetGenImage emailIconImage = const AssetGenImage('assets/images/email_icon_image.png');
   final AssetGenImage mobileIconImage = const AssetGenImage('assets/images/mobile_icon_image.png');
+  final AssetGenImage necImage = const AssetGenImage('assets/images/nec_image.png');
+  final AssetGenImage orderPreferencesImage = const AssetGenImage('assets/images/order_preferences_image.png');
   final AssetGenImage passwordIconImage = const AssetGenImage('assets/images/password_icon_image.png');
+  final AssetGenImage profitImage = const AssetGenImage('assets/images/profit_image.png');
+  final AssetGenImage qualityImage = const AssetGenImage('assets/images/quality_image.png');
+  final AssetGenImage robotImage = const AssetGenImage('assets/images/robot_image.png');
 }
 
 class $AssetsFontsGen {

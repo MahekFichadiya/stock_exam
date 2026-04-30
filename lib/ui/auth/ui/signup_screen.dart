@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stock_management_exam/core/locator/locator.dart';
+import 'package:stock_management_exam/data/model/request_model/user_request_model/user_sign_up_request_model.dart';
 
 import 'package:stock_management_exam/router/app_router.gr.dart';
 import 'package:stock_management_exam/ui/auth/store/auth_store.dart';
@@ -12,12 +13,12 @@ import 'package:stock_management_exam/values/screen_data.dart';
 import 'package:stock_management_exam/widget/custom_app_bar.dart';
 import 'package:stock_management_exam/widget/show_message.dart';
 
-import '../../../data/model/response_model/user_response_model.dart';
 import '../../../generated/assets.dart';
 import '../../../generated/l10n.dart';
 import '../../../values/app_icon.dart';
 import '../../../values/app_text_style.dart';
 import '../../../values/form_validation/form_validation.dart';
+import '../../../values/form_validation/no_consecutive_space_formatter.dart';
 import '../../../widget/custom_submission_button.dart';
 import '../../../widget/custom_text_field.dart';
 import '../../../widget/show_success.dart';
@@ -100,13 +101,14 @@ class _SignupScreenState extends State<SignupScreen> {
 
   var authStore = locator<AuthStore>();
 
-  Future<void> signUp(UserResponseModel model) async {
+  Future<void> signUp(UserSignUpRequestModel model) async {
     try {
       if (await authStore.signUp(model)) {
         if (!mounted) return;
         ShowSuccess(
           context: context,
           isError: false,
+          successMessage: authStore.successMessage,
           onSuccessCallBack: () {
             context.router.push(HomeRoute());
           },
@@ -156,6 +158,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             textInputType: TextInputType.text,
                             validator: FormValidation.nameValidator,
                             textCapitalization: TextCapitalization.words,
+                            inputFormatters: [NoConsecutiveSpaceFormatter()],
                           ),
 
                           //email
@@ -169,6 +172,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             maxLine: 2,
                             textInputType: TextInputType.emailAddress,
                             validator: FormValidation.emailValidator,
+                            inputFormatters: [NoConsecutiveSpaceFormatter()],
                           ),
 
                           //mobile
@@ -207,6 +211,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 obscureText: !value,
                                 maxLine: 1,
                                 style: mediumTextStyle.copyWith(fontSize: 14, letterSpacing: 3),
+                                inputFormatters: [NoConsecutiveSpaceFormatter()],
                               );
                             },
                           ),
@@ -235,6 +240,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 maxLine: 1,
                                 textInputAction: TextInputAction.done,
                                 style: mediumTextStyle.copyWith(fontSize: 14, letterSpacing: 3),
+                                inputFormatters: [NoConsecutiveSpaceFormatter()],
                               );
                             },
                           ),
@@ -288,7 +294,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               if (_formKey.currentState!.validate()) {
                                 if (value) {
                                   signUp(
-                                    UserResponseModel(
+                                    UserSignUpRequestModel(
                                       fullName: _fullNameController.text.trim(),
                                       email: _emailController.text.trim(),
                                       phone: _mobileController.text.trim(),
