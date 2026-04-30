@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "agreeToTheTermsAndConditions": MessageLookupByLibrary.simpleMessage(
       "Agree to the terms and Conditions",
     ),
+    "all": MessageLookupByLibrary.simpleMessage("All"),
     "and": MessageLookupByLibrary.simpleMessage("and"),
     "byContinuingYouAgreeToThe": MessageLookupByLibrary.simpleMessage(
       "By continuing, you agree to the",
@@ -53,7 +54,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Field shouldn\'t be empty",
     ),
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
+    "gainSoFar": MessageLookupByLibrary.simpleMessage("Gain so far"),
     "hello": MessageLookupByLibrary.simpleMessage("Hello !"),
+    "intraday": MessageLookupByLibrary.simpleMessage("Intraday"),
     "lengthOfPasswordShouldBe58": MessageLookupByLibrary.simpleMessage(
       "Length of password should be 5-8",
     ),
@@ -62,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "liveSignals": MessageLookupByLibrary.simpleMessage("Live Signals"),
     "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
+    "ltp": MessageLookupByLibrary.simpleMessage("LTP"),
     "mobile": MessageLookupByLibrary.simpleMessage("Mobile"),
     "nameShouldNotContainDigits": MessageLookupByLibrary.simpleMessage(
       "Name should not contain digits",
@@ -73,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noInternetPleaseCheckYourInternet": MessageLookupByLibrary.simpleMessage(
       "No Internet.. Please Check Your Internet",
     ),
+    "nse": MessageLookupByLibrary.simpleMessage("NSE"),
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordAndConfirmPasswordShouldBeSame":
@@ -94,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Password should contain at least 1 uppercase",
         ),
+    "persentage": MessageLookupByLibrary.simpleMessage("%"),
+    "potentialLeft": MessageLookupByLibrary.simpleMessage("Potential left"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy."),
     "receivedTimeOut": MessageLookupByLibrary.simpleMessage(
       "Received time out",
@@ -109,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
     "success": MessageLookupByLibrary.simpleMessage("Success"),
     "termsOfService": MessageLookupByLibrary.simpleMessage("Terms of Service"),
+    "tradeNow": MessageLookupByLibrary.simpleMessage("Trade Now"),
     "unknownError": MessageLookupByLibrary.simpleMessage("Unknown Error"),
   };
 }
