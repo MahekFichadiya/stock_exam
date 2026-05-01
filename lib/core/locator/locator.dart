@@ -16,3 +16,5 @@ void setUpLocator() async {
   locator.registerLazySingleton<AuthStore>(() => AuthStore(repository: locator<RepositoryImplementation>()));
   locator.registerLazySingleton<StockStore>(() => StockStore(repository: locator<RepositoryImplementation>()));
 }
+
+//Commited at 10:45 (after 1st review)
